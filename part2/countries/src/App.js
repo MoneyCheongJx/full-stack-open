@@ -92,26 +92,16 @@ const Details = ({ result }) => {
   )
 }
   
-const Weather = () => {
-  return(
-    <>
-    <h1>Weather in </h1>
-    <p>temperature Celcius wind m/s</p>
-    </>
-  )
-}
-
 const App = () => {
   const [query, setQuery] = useState("");
   const [result, setResult] = useState([])
-  const [weather, setWeather] = useState([])
 
   const handleOnChange = (event) => {
     setQuery(event.target.value)
   }
 
   const filterdByRegion = (array) => {
-    return array.filter(el => el.name.common.toLowerCase().includes(query))
+    return array.filter(element => element.name.common.toLowerCase().includes(query))
   }
 
   useEffect(() => {
