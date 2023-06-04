@@ -101,7 +101,7 @@ const App = () => {
   }
 
   const filterdByRegion = (array) => {
-    return array.filter(element => element.name.common.toLowerCase().includes(query))
+    return array.filter(el => el.name.common.toLowerCase().includes(query.toLocaleLowerCase()))
   }
 
   useEffect(() => {

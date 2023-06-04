@@ -5,6 +5,18 @@ import Persons from './components/Person'
 import personService from './services/person'
 import './index.css'
 
+const Notification = ({ message }) => {
+  if (message == null) {
+    return null
+  }
+
+  return (
+    <div className='message'>
+      {message}
+    </div>
+  )
+}
+
 const App = () => {
   const [persons, setPersons] = useState([])
   const [newName, setNewName] = useState('')
@@ -74,10 +86,10 @@ const App = () => {
       )
   }
 
-  const deletePerson = (person) => {
+  const deletePerson = async (person) => {
     console.log(`person ${person}`)
     if (window.confirm(`Delete ${person.name}?`)) {
-      personService.deletePerson(person)
+      await personService.deletePerson(person)
         .then(response => console.log(response))
     }
     personService.getAll()
@@ -85,18 +97,6 @@ const App = () => {
         setPersons(initialPersons)
       })
       .catch(error => console.log("error"))
-  }
-
-  const Notification = ({ message }) => {
-    if (message == null) {
-      return null
-    }
-
-    return (
-      <div className='message'>
-        {message}
-      </div>
-    )
   }
 
   useEffect(() => {
